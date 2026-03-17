@@ -1,0 +1,20 @@
+# Requirements cho Web App
+# Chạy: pip install -r requirements.txt
+
+# FastAPI và server
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
+# OpenCV cho xử lý video
+opencv-python>=4.8.0
+
+# Các thư viện đã có từ trước (nếu chưa có)
+torch>=2.0.0
+torchvision>=0.15.0
+transformers>=4.35.0
+Pillow>=10.0.0
+numpy>=1.24.0
+scikit-learn
+matplotlib>=3.7.0
+nltk>=3.8.0

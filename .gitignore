@@ -1,0 +1,11 @@
+venv/
+.venv/
+__pycache__/
+
+data/
+static/
+test/
+docs/
+app.py
+
+best_model.pth
