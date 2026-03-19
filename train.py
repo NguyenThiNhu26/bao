@@ -77,14 +77,13 @@ def train():
      
     train_loader = DataLoader(train_dataset, batch_size=Config.BATCH_SIZE, shuffle=True, num_workers=0)
     val_loader = DataLoader(val_dataset, batch_size=Config.BATCH_SIZE, shuffle=False, num_workers=0) 
-    # test_loader khong can thiet o day vi se dung o file khac
-
     # --- 3. KHỞI TẠO MODEL ---
     print("Dang khoi tao Model...")
     model = DrivingRiskModel(Config, vocab_size=len(tokenizer)).to(device)
     
     # [QUAN TRỌNG] Nạp trọng số Pre-train cho nhánh CNN
-    pretrain_path = "cnn_pretrained.pth"
+    pretrain_path = os.path.join(os.path.dirname(__file__), "saved_models", "cnn_pretrained.pth")
+
     if os.path.exists(pretrain_path):
         print(f"Phat hien file pretrained CNN: {pretrain_path}")
         # Truy cập vào encoder bên trong DrivingRiskModel để gọi hàm load
