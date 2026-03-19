@@ -1,4 +1,4 @@
-# Near-Future Driving Risk Captioning 🚗⚠️
+# Near-Future Driving Risk Captioning 🚗
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.x-ee4c2c)
@@ -18,11 +18,11 @@ Dự án xây dựng một mô hình Multi-Task Learning để giải đồng th
 Mô hình gồm 3 khối chính:
 
 ### 1) Multimodal Encoder (Early Fusion)
-1. Trích xuất đặc trưng ảnh bằng ResNet18 (bỏ lớp phân loại cuối).
+1. Trích xuất đặc trưng ảnh bằng CNN 5 lớp Conv (bỏ lớp phân loại cuối).
 2. Ghép đặc trưng ảnh với sensor (Speed, Accel, Course) theo từng timestep.
 3. Đưa qua LSTM 2 tầng để lấy Context Vector 1024 chiều.
 
-### 2) Action Regressor (LSTM + FC)
+### 2) Action Regressor (LSTM + 3FC)
 1. Nhận Context Vector.
 2. Dự đoán trực tiếp 5 bước tương lai của xe (Speed, Course).
 3. Đầu ra dạng `future_flat` rồi reshape thành `[Batch, 5, 2]`.
@@ -56,7 +56,7 @@ Traffic_Risk_Project/
 ├── data/
 │   ├── processed_train.csv          # File train metadata
 │   ├── test_data.csv                # File test metadata
-│   ├── images_resized/
+│   ├── images/
 │   │   └── <video_id>/
 │   │       ├── frame_0.jpg
 │   │       ├── frame_1.jpg
@@ -78,27 +78,23 @@ Traffic_Risk_Project/
 ```
 
 Lưu ý nhanh:
-1. Ảnh đã resize đặt trong `data/images_resized/<video_id>/`.
+1. Ảnh đã resize đặt trong `data/images/<video_id>/`.
 2. Telemetry JSON đặt trong `data/telemetry/`.
 3. CSV train/test đặt đúng trong `data/`.
 
 ### 1) Clone repository
 ```bash
-git clone <YOUR_REPO_URL>
-cd Traffic_Risk_Project
+git clone https://github.com/HoangSyViet04/Near_Future_Traffic_Risk.git
 ```
 
 ### 2) Tạo môi trường và cài dependencies
 ```bash
 python -m venv .venv
-\.venv\Scripts\Activate.ps1
-pip install --upgrade pip
-pip install torch torchvision transformers nltk pandas matplotlib scikit-learn pillow tqdm
 ```
 
 Nếu dùng CMD:
 ```bash
-.venv\Scripts\activate.bat
+.venv\Scripts\activate
 ```
 
 Nếu dùng Linux/macOS:
