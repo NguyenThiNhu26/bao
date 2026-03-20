@@ -82,6 +82,11 @@ Lưu ý nhanh:
 2. Telemetry JSON đặt trong `data/telemetry/`.
 3. CSV train/test đặt đúng trong `data/`.
 
+### link dataset: 
+```bash
+https://drive.google.com/file/d/1aICWnxlVep27B_9pudZoJbAUPKVVZmmN/view
+```
+
 ### 1) Clone repository
 ```bash
 git clone https://github.com/HoangSyViet04/Near_Future_Traffic_Risk.git

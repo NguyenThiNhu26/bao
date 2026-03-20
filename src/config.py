@@ -28,7 +28,7 @@ class Config:
 
     # --- HUẤN LUYỆN ---
     BATCH_SIZE = 50
-    NUM_EPOCHS = 20
+    NUM_EPOCHS = 25
     LEARNING_RATE = 1e-4
 
     # Thiết bị (tự động chọn GPU nếu có)
