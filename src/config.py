@@ -1,38 +1,40 @@
 import torch
 import os
 
-basedir  = os.path.dirname(os.path.dirname(__file__))
+basedir = os.path.dirname(os.path.dirname(__file__))
+
 class Config:
-    # Đường dẫn 
+    # ==================== ĐƯỜNG DẪN ====================
     TRAIN_CSV = os.path.join(basedir, 'data', 'processed_train.csv')
     IMAGES_ROOT = os.path.join(basedir, 'data', 'images')
     TELEMETRY_ROOT = os.path.join(basedir, 'data', 'telemetry')
 
-    # cấu hình model
+    # ==================== CẤU HÌNH MODEL ====================
     # Kích thước ảnh đầu vào 
-    IMAGE_SIZE = (90, 160)
+    # → Model cũ (CNN): (90, 160)
+    # → Model mới (Swin Transformer): PHẢI DÙNG (224, 224)
+    IMAGE_SIZE = (224, 224)          # ← ĐÃ ĐỔI CHO MỨC 2
 
     # Số frame model sẽ nhìn (Start -> Mid)
     MAX_FRAMES = 16
 
-    # Kích thước vector nhúng (Embedding cho word)
+    # Kích thước vector nhúng & hidden
     EMBED_SIZE = 256
-    # Kích thước hidden state cho LSTM (Encoder + Decoder)
     HIDDEN_SIZE = 1024
 
-    # Số lượng tham số sensor (Speed, Acceleration, Course)
+    # Sensor
     SENSOR_DIM = 3
 
-    # Action Regressor dự đoán số bước tương lai
+    # Action Regressor
     FUTURE_STEPS = 5
 
-    # --- HUẤN LUYỆN ---
-    BATCH_SIZE = 50
+    # ==================== HUẤN LUYỆN ====================
+    BATCH_SIZE = 32                  # ← Giảm từ 50 xuống 32 (Swin nặng hơn)
     NUM_EPOCHS = 25
-    LEARNING_RATE = 1e-3
+    LEARNING_RATE = 1e-4             # ← Giảm LR cho Transformer ổn định hơn
 
-    # Thiết bị (tự động chọn GPU nếu có)
-    DEVICE =  torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # Thiết bị
+    DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    # SAVE 
-    MODEL_SAVE_PATH = 'saved_models/best_model.pth'
+    # Save
+    MODEL_SAVE_PATH = 'saved_models/best_model_transformer.pth'   # ← Đổi tên để phân biệt
