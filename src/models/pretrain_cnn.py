@@ -71,7 +71,7 @@ class PretrainCNN(nn.Module):
             nn.Linear(1024, 128),
             nn.BatchNorm1d(128),
             nn.ReLU(inplace=True),
-            nn.Dropout(0.3),
+            
 
             # Output: 128 -> 2
             nn.Linear(128, 2)
