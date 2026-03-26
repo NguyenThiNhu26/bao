@@ -48,7 +48,7 @@ def train():
     print(f"So luong Train: {len(train_df)} | Val: {len(val_df)} | Test: {len(test_df)}")
 
     # Luu tap Test ra file rieng de danh cho buoc Evaluate (Tinh BLEU/CIDEr sau nay)
-    test_csv_path = os.path.join(os.path.dirname(Config.TRAIN_CSV), "test_data.csv")
+    test_csv_path = os.path.join(os.path.dirname(Config.MODEL_SAVE_PATH), "test_data.csv")
     test_df.to_csv(test_csv_path, index=False)
     print(f"Da luu tap Test ra file rieng: {test_csv_path}")
 
@@ -229,5 +229,6 @@ def plot_metrics(log_file):
     plt.savefig(save_path, dpi=150, bbox_inches='tight')
     plt.show()
     print(f"Saved chart → {save_path}")
+    plot_metrics(log_file)
 if __name__ == "__main__":
     train()
