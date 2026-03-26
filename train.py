@@ -198,37 +198,8 @@ def train():
             if epochs_no_improve >= patience:
                 print(f"Dung huan luyen som (Early Stopping) tai Epoch {epoch+1} de tranh Overfitting!")
                 break 
-def plot_metrics(log_file):
-    import matplotlib.pyplot as plt
-    import pandas as pd
-
-    df = pd.read_csv(log_file)
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4))
-    fig.suptitle("Driving Risk Model Training Metrics", fontsize=14, fontweight='bold')
-
-    # ── Learning Curve ──
-    axes[0].plot(df['Epoch'], df['Train_Loss'], label='Train Loss', color='#3266ad', linewidth=2, marker='o')
-    axes[0].plot(df['Epoch'], df['Val_Loss'],   label='Val Loss',   color='#c95a3a', linewidth=2, marker='s')
-    axes[0].set_title("Learning Curve: Train vs Validation")
-    axes[0].set_xlabel("Epoch")
-    axes[0].set_ylabel("Loss")
-    axes[0].legend()
-    axes[0].grid(True, alpha=0.3)
-
-    # ── Motion vs Caption ──
-    axes[1].plot(df['Epoch'], df['Motion_Loss_Val'],  label='Motion Loss (Val)',  color='#1d9e75', linewidth=2, marker='^')
-    axes[1].plot(df['Epoch'], df['Caption_Loss_Val'], label='Caption Loss (Val)', color='#ba7517', linewidth=2, marker='D')
-    axes[1].set_title("Validation Detail: Motion vs Caption")
-    axes[1].set_xlabel("Epoch")
-    axes[1].set_ylabel("Loss")
-    axes[1].legend()
-    axes[1].grid(True, alpha=0.3)
-
-    plt.tight_layout()
-    save_path = log_file.replace("training_log.csv", "training_metrics.png")
-    plt.savefig(save_path, dpi=150, bbox_inches='tight')
-    plt.show()
-    print(f"Saved chart → {save_path}")
-    plot_metrics(log_file)
+    from plot_metrics import plot_metrics
+    output_img = os.path.join(os.path.dirname(Config.MODEL_SAVE_PATH), "learning_curve.png")
+    plot_metrics(log_file, output_img)
 if __name__ == "__main__":
     train()
