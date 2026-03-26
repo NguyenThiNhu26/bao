@@ -153,7 +153,8 @@ def run_pretrain(train_loader, val_loader, epochs=10, lr=1e-4, device=None, save
         print(
             f"Epoch [{epoch+1}/{epochs}] "
             f"| Train MSE: {avg_train_mse:.6f}  Train MAE: {avg_train_mae:.6f} "
-            f"| Val MSE: {avg_val_mse:.6f}  Val MAE: {avg_val_mae:.6f}"
+            f"| Val MSE: {avg_val_mse:.6f}  Val MAE: {avg_val_mae:.6f}",
+            flush=True
         )
 
         if avg_val_mse < best_val_loss:
