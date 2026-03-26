@@ -198,8 +198,6 @@ def train():
             if epochs_no_improve >= patience:
                 print(f"Dung huan luyen som (Early Stopping) tai Epoch {epoch+1} de tranh Overfitting!")
                 break 
-    from plot_metrics import plot_metrics
-    output_img = os.path.join(os.path.dirname(Config.MODEL_SAVE_PATH), "learning_curve.png")
-    plot_metrics(log_file, output_img)
+                
 if __name__ == "__main__":
     train()
